@@ -18,6 +18,7 @@ class Board extends React.Component {
         this.state = {
             squares: Array(9).fill(null),
             xIsNext: true,
+            step: 0,
         };
     }
 
@@ -50,6 +51,7 @@ class Board extends React.Component {
         this.setState({
             squares: squares,
             xIsNext: !this.state.xIsNext,
+            step: this.state.step + 1,
         });
     }
 
@@ -65,6 +67,8 @@ class Board extends React.Component {
         let status;
         if (winner) {
             status = `Winner: ${winner}`;
+        } else if (this.state.step === 9) {
+            status = 'Tic Tac Tie!'
         } else {
             status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
         }
